@@ -204,6 +204,8 @@ authconfig --useshadow --passalgo=<%= @host.operatingsystem.password_hash.downca
 <% end -%>
 timezone --utc <%= host_param('time-zone') || 'UTC' %> <%= host_param('ntp-server') ? "--ntpservers #{host_param('ntp-server')}" : '' %>
 
+<%= host_param('ntp-server') ? "timesource --ntp-server #{host_param('ntp-server')}" : '' %>
+
 <% if rhel_compatible -%>
 services --disabled gpm,sendmail,cups,pcmcia,isdn,rawdevices,hpoj,bluetooth,openibd,avahi-daemon,avahi-dnsconfd,hidd,hplip,pcscd
 <% end -%>
